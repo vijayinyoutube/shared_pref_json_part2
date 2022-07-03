@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_pref_json_part2/Data/Model/home_page_model.dart';
 import '../Components/spacer.dart';
 
 import '../../../../Data/Raw/raw_data.dart';
@@ -29,6 +30,8 @@ class _MyHomePageState extends State<MyHomePage> {
     ageController.dispose();
     super.dispose();
   }
+
+  late var dataStore;
 
   HomePageData homePageData = HomePageData();
   @override
@@ -83,7 +86,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget buildBtn() => ElevatedButton(
         onPressed: () async {
-          await homePageData.saveJsonData(rawData);
+          dataStore = HomePageModel(
+            nameController.text,
+            int.parse(ageController.text),
+          ).toMap();
+
+          await homePageData.saveJsonData(dataStore);
           homePageData.getJsonData();
         },
         child: const Text('Save Data'),

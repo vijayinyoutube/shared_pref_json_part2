@@ -1,4 +1,4 @@
-final rawData = <String, dynamic>{'name': 'Alice', 'age': 20};
+final rawData = <String, dynamic>{};
 
 final defaultData = <String, dynamic>{
   'name': 'name not found.',

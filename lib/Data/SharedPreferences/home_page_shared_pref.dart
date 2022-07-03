@@ -9,7 +9,13 @@ import '../Raw/raw_data.dart';
 class HomePageData {
   Future saveJsonData(jsonData) async {
     final prefs = await SharedPreferences.getInstance();
-    var saveData = jsonEncode(jsonData);
+
+    debugPrint('Raw data: $rawData');
+
+    rawData.addEntries(jsonData.entries);
+    debugPrint('Raw data: $rawData');
+
+    var saveData = jsonEncode(rawData);
     await prefs.setString('jsonData', saveData);
   }
 
