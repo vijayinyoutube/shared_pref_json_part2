@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 class HomePageModel {
-  final String name;
+  final String? name;
   final int? age;
 
   HomePageModel(
@@ -31,7 +31,7 @@ class HomePageModel {
 
   factory HomePageModel.fromMap(Map<String, dynamic> map) {
     return HomePageModel(
-      map['name'] as String,
+      map['name'] != null ? map['name'] as String : null,
       map['age'] != null ? map['age'] as int : null,
     );
   }

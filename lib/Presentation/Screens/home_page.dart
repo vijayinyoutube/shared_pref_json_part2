@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_pref_json_part2/Data/Model/home_page_model.dart';
 import '../Components/spacer.dart';
-
-import '../../../../Data/Raw/raw_data.dart';
 import '../../Data/SharedPreferences/home_page_shared_pref.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -50,9 +47,11 @@ class _MyHomePageState extends State<MyHomePage> {
               const HeightSpacer(myHeight: 25.00),
               buildTextField(nameController, 'Your name'),
               const HeightSpacer(myHeight: 25.00),
+              saveNameBtn(),
+              const HeightSpacer(myHeight: 50.00),
               buildTextField(ageController, 'Your age'),
               const HeightSpacer(myHeight: 25.00),
-              buildBtn()
+              saveAgeBtn()
             ],
           ),
         ),
@@ -84,16 +83,23 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
 
-  Widget buildBtn() => ElevatedButton(
+  Widget saveNameBtn() => ElevatedButton(
         onPressed: () async {
-          dataStore = HomePageModel(
-            nameController.text,
-            int.parse(ageController.text),
-          ).toMap();
+          dataStore = <String, dynamic>{'name': nameController.text};
 
           await homePageData.saveJsonData(dataStore);
           homePageData.getJsonData();
         },
-        child: const Text('Save Data'),
+        child: const Text('Save name'),
+      );
+
+  Widget saveAgeBtn() => ElevatedButton(
+        onPressed: () async {
+          dataStore = <String, dynamic>{'age': int.parse(ageController.text)};
+
+          await homePageData.saveJsonData(dataStore);
+          homePageData.getJsonData();
+        },
+        child: const Text('Save age'),
       );
 }
