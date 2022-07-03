@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_pref_json_part2/Presentation/Components/spacer.dart';
+import '../Components/spacer.dart';
 
 import '../../../../Data/Raw/raw_data.dart';
 import '../../Data/SharedPreferences/home_page_shared_pref.dart';
